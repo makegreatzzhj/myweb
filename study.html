@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程介绍 - 手语学习平台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/myweb/LearningCss.css">
+    <style>
+        /* 课程介绍页特有样式 */
+        .course-intro-section {
+            padding: 8rem 0 4rem;
+            background-color: #f9fafb;
+        }
+        
+        .course-header {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .course-header {
+                flex-direction: row;
+            }
+        }
+        
+        .course-poster-container {
+            flex: 1;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .course-poster {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .course-info {
+            flex: 1;
+        }
+        
+        .course-badges {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .course-badge {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .course-badge.new {
+            background-color: #10b981;
+        }
+        
+        .course-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            color: #6b7280;
+        }
+        
+        .course-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .course-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 2.5rem;
+        }
+        
+        .course-actions {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #3b82f6;
+        }
+        
+        .course-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3b82f6;
+            display: inline-block;
+        }
+        
+        .course-outline {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+        
+        .outline-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .outline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .outline-item:hover {
+            background-color: #f9fafb;
+        }
+        
+        .outline-item-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .outline-item-number {
+            width: 2rem;
+            height: 2rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .outline-item-title {
+            font-weight: 500;
+        }
+        
+        .outline-item-duration {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .course-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .course-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .course-features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: #eff6ff;
+            color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <img src="./public/logo.jpg" alt="Logo" class="logo-image">
+                    <a href="#" class="logo">默语心声</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/mywe/bindex.html" class="nav-link">首页</a>
+                    <a href="/myweb/content.html" class="nav-link">网站特色</a>
+                    <a href="/myweb/learning.html" class="nav-link">学习内容</a>
+                    <a href="/myweb/hire.html" class="nav-link">职业招聘</a>
+                    <a href="/myweb/talk.html" class="nav-link">社区交流</a>
+                    <a href="/myweb/feedback.html" class="nav-link">反馈</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 课程介绍区域 -->
+    <section class="course-intro-section">
+        <div class="section-container">
+            <div class="course-header">
+                <div class="course-poster-container">
+                    <img src="https://picsum.photos/id/0/800/600" alt="Web开发基础" class="course-poster">
+                </div>
+                <div class="course-info">
+                    <div class="course-badges">
+                        <span class="course-badge hot">热门</span>
+                        <span class="course-badge">初级</span>
+                    </div>
+                    <h1 class="course-title">Web开发基础</h1>
+                    <div class="course-meta">
+                        <div class="course-meta-item">
+                            <i class="fa fa-clock-o"></i>
+                            <span>8周课程</span>
+                        </div>
+                        <div class="course-meta-item">
+                            <i class="fa fa-signal"></i>
+                            <span>初级难度</span>
+                        </div>
+                        <div class="course-meta-item">
+                            <i class="fa fa-users"></i>
+                            <span>12,543名学员</span>
+                        </div>
+                        <div class="course-meta-item">
+                            <i class="fa fa-star" style="color:#f59e0b"></i>
+                            <span>4.8分 (1,245评价)</span>
+                        </div>
+                    </div>
+                    <p class="course-description">
+                        本课程将带领你从零开始学习Web开发的核心技术，包括HTML5、CSS3和JavaScript基础知识。通过实际案例和项目练习，你将掌握现代网页开发的基本技能，能够独立构建静态网页，并为后续学习前端框架打下坚实基础。
+                    </p>
+                    <div class="course-actions">
+                        <a href="run.html" class="btn-primary">
+                            <i class="fa fa-play"></i> 开始学习
+                        </a>
+                        <button class="btn-secondary">
+                            <i class="fa fa-bookmark-o"></i> 收藏课程
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程大纲 -->
+            <div class="course-outline">
+                <h2 class="course-section-title">课程大纲</h2>
+                <div class="outline-list">
+                    <div class="outline-item">
+                        <div class="outline-item-content">
+                            <div class="outline-item-number">1</div>
+                            <div>
+                                <div class="outline-item-title">Web开发基础入门</div>
+                                <div class="outline-item-duration">3课时 · 45分钟</div>
+                            </div>
+                        </div>
+                        <i class="fa fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <div class="outline-item">
+                        <div class="outline-item-content">
+                            <div class="outline-item-number">2</div>
+                            <div>
+                                <div class="outline-item-title">HTML5核心标签与语义化</div>
+                                <div class="outline-item-duration">5课时 · 75分钟</div>
+                            </div>
+                        </div>
+                        <i class="fa fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <div class="outline-item">
+                        <div class="outline-item-content">
+                            <div class="outline-item-number">3</div>
+                            <div>
+                                <div class="outline-item-title">CSS3样式与布局技巧</div>
+                                <div class="outline-item-duration">6课时 · 90分钟</div>
+                            </div>
+                        </div>
+                        <i class="fa fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <div class="outline-item">
+                        <div class="outline-item-content">
+                            <div class="outline-item-number">4</div>
+                            <div>
+                                <div class="outline-item-title">JavaScript基础语法</div>
+                                <div class="outline-item-duration">8课时 · 120分钟</div>
+                            </div>
+                        </div>
+                        <i class="fa fa-chevron-right text-gray-400"></i>
+                    </div>
+                    <div class="outline-item">
+                        <div class="outline-item-content">
+                            <div class="outline-item-number">5</div>
+                            <div>
+                                <div class="outline-item-title">综合项目实战</div>
+                                <div class="outline-item-duration">4课时 · 80分钟</div>
+                            </div>
+                        </div>
+                        <i class="fa fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程特点 -->
+            <div>
+                <h2 class="course-section-title">课程特点</h2>
+                <div class="course-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa fa-code"></i>
+                        </div>
+                        <h3 class="feature-title">实战导向</h3>
+                        <p class="feature-desc">每个知识点都配有实际案例，边学边练</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa fa-mobile"></i>
+                        </div>
+                        <h3 class="feature-title">响应式设计</h3>
+                        <p class="feature-desc">学习现代移动端适配技术，兼容各种设备</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <h3 class="feature-title">社区支持</h3>
+                        <p class="feature-desc">加入学习社区，与同学和老师交流问题</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa fa-certificate"></i>
+                        </div>
+                        <h3 class="feature-title">结业证书</h3>
+                        <p class="feature-desc">完成课程后获得结业证书，提升简历竞争力</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI助手弹窗 -->
+    <div class="ai-assistant hidden" id="aiAssistant">
+        <div class="ai-header">
+            <div class="ai-title">AI助手</div>
+            <div class="ai-close" id="aiCloseBtn"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="ai-chat-area" id="chatArea">
+            <div class="ai-message">
+                <div class="ai-bot-message">你好，我是你的AI学习助手，有什么可以帮助你的学习问题吗？</div>
+            </div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" class="ai-input" id="aiInput" placeholder="请输入您的问题...">
+            <button class="ai-send" id="aiSendBtn">发送</button>
+        </div>
+    </div>
+    <button class="ai-toggle-btn" id="aiToggleBtn"><i class="fa fa-robot"></i></button>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">学习平台</h3>
+                    <p class="footer-description">提供高质量的学习资源和工具，助力您的学习与成长。</p>
+                </div>
+
+                <div class="footer-links-grid">
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">快速链接</h4>
+                        <ul class="footer-list">
+                            <li><a href="index.html" class="footer-link">首页</a></li>
+                            <li><a href="learning.html" class="footer-link">学习内容</a></li>
+                            <li><a href="content.html" class="footer-link">内容介绍</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">工具</h4>
+                        <ul class="footer-list">
+                            <li><a href="ai.html" class="footer-link">AI工具</a></li>
+                            <li><a href="feedback.html" class="footer-link">反馈</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">联系我们</h4>
+                        <ul class="footer-list">
+                            <li><a href="#" class="footer-link">帮助中心</a></li>
+                            <li><a href="#" class="footer-link">联系客服</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2023 学习宣传平台 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // AI助手功能
+        const aiToggleBtn = document.getElementById('aiToggleBtn');
+        const aiAssistant = document.getElementById('aiAssistant');
+        const aiCloseBtn = document.getElementById('aiCloseBtn');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+        const aiInput = document.getElementById('aiInput');
+        const chatArea = document.getElementById('chatArea');
+
+        aiToggleBtn.addEventListener('click', () => {
+            aiAssistant.classList.toggle('hidden');
+        });
+
+        aiCloseBtn.addEventListener('click', () => {
+            aiAssistant.classList.add('hidden');
+        });
+
+        function sendMessage() {
+            const message = aiInput.value.trim();
+            if (message) {
+                // 添加用户消息
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.className = 'ai-message';
+                userMessageDiv.innerHTML = `<div class="ai-user-message">${message}</div>`;
+                chatArea.appendChild(userMessageDiv);
+                
+                // 清空输入框
+                aiInput.value = '';
+                
+                // 滚动到底部
+                chatArea.scrollTop = chatArea.scrollHeight;
+                
+                // 模拟AI回复
+                setTimeout(() => {
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.className = 'ai-message';
+                    botMessageDiv.innerHTML = '<div class="ai-bot-message">感谢您的提问，我会尽快为您解答这个问题。</div>';
+                    chatArea.appendChild(botMessageDiv);
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        aiSendBtn.addEventListener('click', sendMessage);
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // 课程大纲展开/折叠功能
+        const outlineItems = document.querySelectorAll('.outline-item');
+        outlineItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // 实际项目中可以添加展开/折叠逻辑
+                alert('即将跳转到该章节学习');
+            });
+        });
+    </script>
+</body>
+</html>
