@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内容介绍 - 学习宣传网站</title>
+    <link rel="stylesheet" href="/myweb/ContentCss.css">
+</head>
+<style>
+        .ai-assistant {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 320px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .ai-header {
+            background-color: #2563eb;
+            color: #fff;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ai-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .ai-close {
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .ai-chat-area {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        .ai-message {
+            margin-bottom: 16px;
+        }
+        .ai-bot-message {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 8px 8px 8px 0;
+            max-width: 80%;
+        }
+        .ai-user-message {
+            background-color: #3b82f6;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px 8px 0 8px;
+            max-width: 80%;
+            margin-left: auto;
+        }
+        .ai-input-area {
+            border-top: 1px solid #e5e7eb;
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+        }
+        .ai-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            outline: none;
+        }
+        .ai-send {
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .ai-send:hover {
+            background-color: #2563eb;
+        }
+        .ai-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            width: 60px;
+            height: 60px;
+            background-color: #2563eb;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+<body class="font-sans">
+    <!-- 导航栏 -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <img src="/myweb/logo.jpg" alt="Logo" class="logo-image">
+                    <a href="#" class="logo">默语心声</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/mywe/bindex.html" class="nav-link">首页</a>
+                    <a href="/myweb/content.html" class="nav-link">网站特色</a>
+                    <a href="/myweb/learning.html" class="nav-link">学习内容</a>
+                    <a href="/myweb/hire.html" class="nav-link">职业招聘</a>
+                    <a href="/myweb/talk.html" class="nav-link">社区交流</a>
+                    <a href="/myweb/feedback.html" class="nav-link">反馈</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 页面标题 -->
+    <header class="page-header">
+        <div class="header-container">
+            <h1 class="header-title">内容介绍</h1>
+            <p class="header-subtitle">深入了解我们提供的学习内容体系</p>
+        </div>
+    </header>
+
+    <!-- 内容介绍区域 -->
+    <section class="content-section">
+        <div class="section-container">
+            <!-- 内容概述 -->
+            <div class="content-overview">
+                <h2 class="section-title">我们的学习内容体系</h2>
+                <div class="overview-card">
+                    <p class="overview-text">我们的学习内容经过精心设计，形成了完整的知识体系，覆盖多个领域和不同难度级别。无论您是初学者还是有一定经验的学习者，都能找到适合自己的学习资源。</p>
+                    <p class="overview-text">我们的内容团队由行业专家组成，确保每一份学习材料都具有专业性、实用性和时效性，帮助您快速掌握相关技能并应用到实际工作中。</p>
+                </div>
+            </div>
+            
+            <!-- 内容分类详情 -->
+            <div class="category-details">
+                <h2 class="section-title">内容分类详情</h2>
+                
+                <!-- 编程开发 -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <div class="category-image">
+                            <img src="https://picsum.photos/id/160/600/400" alt="编程开发" class="category-img">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-header">
+                                <div class="category-icon blue">
+                                    <i class="fa fa-code"></i>
+                                </div>
+                                <h3 class="category-title">C端（听障用户）</h3>
+                            </div>
+                            <p class="category-description">基础免费层：提供标准手语课程、开放式社区交流、全面的招聘信息浏览等功能。此层的战略目标是构建大规模的用户流量池，培育用户习惯，建立品牌认知和社区粘性，是平台的基石。</p>
+                            <div class="category-tags">
+                                <span class="tag blue">基础了解</span>
+                                <span class="tag blue">中心学习</span>
+                                <span class="tag blue">课后作业</span>
+                                <span class="tag blue">考试</span>
+                                <span class="tag blue">学习</span>
+                                <span class="tag blue">云计算</span>
+                            </div>
+                            <a href="#" class="category-link blue">查看全部手语内容 <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 设计创意 -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <div class="category-image">
+                            <img src="https://picsum.photos/id/96/600/400" alt="设计创意" class="category-img">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-header">
+                                <div class="category-icon purple">
+                                    <i class="fa fa-paint-brush"></i>
+                                </div>
+                                <h3 class="category-title">设计创意</h3>
+                            </div>
+                            <p class="category-description">包括UI/UX设计、平面设计、插画设计、3D设计等内容，教授设计原理、工具使用和创意表达。</p>
+                            <div class="category-tags">
+                                <span class="tag purple">UI设计</span>
+                                <span class="tag purple">UX设计</span>
+                                <span class="tag purple">平面设计</span>
+                                <span class="tag purple">品牌设计</span>
+                                <span class="tag purple">动效设计</span>
+                                <span class="tag purple">设计工具</span>
+                            </div>
+                            <a href="#" class="category-link purple">查看全部设计创意内容 <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 商业管理 -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <div class="category-image">
+                            <img src="https://picsum.photos/id/180/600/400" alt="商业管理" class="category-img">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-header">
+                                <div class="category-icon green">
+                                    <i class="fa fa-briefcase"></i>
+                                </div>
+                                <h3 class="category-title">商业管理</h3>
+                            </div>
+                            <p class="category-description">涵盖市场营销、财务管理、项目管理、创业指导等内容，帮助您提升商业技能和管理能力。</p>
+                            <div class="category-tags">
+                                <span class="tag green">市场营销</span>
+                                <span class="tag green">财务管理</span>
+                                <span class="tag green">项目管理</span>
+                                <span class="tag green">创业</span>
+                                <span class="tag green">领导力</span>
+                                <span class="tag green">沟通技巧</span>
+                            </div>
+                            <a href="#" class="category-link green">查看全部商业管理内容 <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 数据科学 -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <div class="category-image">
+                            <img src="https://picsum.photos/id/119/600/400" alt="数据科学" class="category-img">
+                        </div>
+                        <div class="category-info">
+                            <div class="category-header">
+                                <div class="category-icon yellow">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                                <h3 class="category-title">数据科学</h3>
+                            </div>
+                            <p class="category-description">包括数据分析、数据可视化、机器学习、人工智能等内容，教授数据处理和分析技能。</p>
+                            <div class="category-tags">
+                                <span class="tag yellow">数据分析</span>
+                                <span class="tag yellow">数据可视化</span>
+                                <span class="tag yellow">机器学习</span>
+                                <span class="tag yellow">人工智能</span>
+                                <span class="tag yellow">大数据</span>
+                                <span class="tag yellow">统计分析</span>
+                            </div>
+                            <a href="#" class="category-link yellow">查看全部数据科学内容 <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习路径 -->
+            <div class="learning-paths">
+                <h2 class="section-title">推荐学习路径</h2>
+                <div class="paths-container">
+                    <p class="paths-intro">我们为不同学习目标的用户设计了推荐学习路径，帮助您系统化学习，高效掌握相关技能：</p>
+                    
+                    <div class="paths-grid">
+                        <div class="path-card">
+                            <h4 class="path-title">手语教师学习路径</h4>
+                            <ul class="path-list">
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>基础手语 → 进阶</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>教学基础 → 高级</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>学习面试和教学</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>工作化管理</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="path-card">
+                            <h4 class="path-title">平面设计师</h4>
+                            <ul class="path-list">
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>基础平面设计了解</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>平面设计欣赏与分析</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>平面设计的高级应用</span>
+                                </li>
+                                <li class="path-item">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>实战平面设计</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="paths-action">
+                        <a href="#" class="paths-btn">
+                            查看全部学习路径
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div class="ai-assistant hidden" id="aiAssistant">
+        <div class="ai-header">
+            <div class="ai-title">AI助手</div>
+            <div class="ai-close" id="aiCloseBtn"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="ai-chat-area" id="chatArea">
+            <div class="ai-message">
+                <div class="ai-bot-message">你好，我是你的AI学习助手，有什么可以帮助你的学习问题吗？</div>
+            </div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" class="ai-input" id="aiInput" placeholder="请输入您的问题...">
+            <button class="ai-send" id="aiSendBtn">发送</button>
+        </div>
+    </div>
+    <button class="ai-toggle-btn" id="aiToggleBtn"><i class="fa fa-robot"></i></button>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">学习平台</h3>
+                    <p class="footer-description">提供高质量的学习资源和工具，助力您的学习与成长。</p>
+                </div>
+                
+                <div class="footer-links-grid">
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">快速链接</h4>
+                        <ul class="footer-list">
+                            <li><a href="/myweb/index.html" class="footer-link">首页</a></li>
+                            <li><a href="/myweb/learning.html" class="footer-link">学习内容</a></li>
+                            <li><a href="/myweb/content.html" class="footer-link">内容介绍</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">工具</h4>
+                        <ul class="footer-list">
+
+                            <li><a href="/myweb/feedback.html" class="footer-link">反馈</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-subtitle">联系我们</h4>
+                        <ul class="footer-list">
+                            <li><a href="#" class="footer-link">帮助中心</a></li>
+                            <li><a href="#" class="footer-link">联系客服</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2023 学习宣传平台 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const aiToggleBtn = document.getElementById('aiToggleBtn');
+        const aiCloseBtn = document.getElementById('aiCloseBtn');
+        const aiAssistant = document.getElementById('aiAssistant');
+        const aiInput = document.getElementById('aiInput');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+        const chatArea = document.getElementById('chatArea');
+
+        aiToggleBtn.addEventListener('click', () => {
+            aiAssistant.classList.remove('hidden');
+            aiToggleBtn.classList.add('hidden');
+        });
+
+        aiCloseBtn.addEventListener('click', () => {
+            aiAssistant.classList.add('hidden');
+            aiToggleBtn.classList.remove('hidden');
+        });
+
+        function sendMessage() {
+            const message = aiInput.value.trim();
+            if (!message) return;
+
+            const userMessage = document.createElement('div');
+            userMessage.className = 'ai-message';
+            userMessage.innerHTML = `<div class="ai-user-message">${message}</div>`;
+            chatArea.appendChild(userMessage);
+
+            aiInput.value = '';
+
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'ai-message';
+                botMessage.innerHTML = `<div class="ai-bot-message">${getRandomReply(message)}</div>`;
+                chatArea.appendChild(botMessage);
+                chatArea.scrollTop = chatArea.scrollHeight;
+            }, 800);
+        }
+
+        aiSendBtn.addEventListener('click', sendMessage);
+        aiInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function getRandomReply(question) {
+            const replies = {
+                "这道数学题怎么解": "请把题目拍给我，我来帮你分析解题步骤~",
+                "英语单词怎么记": "可以试试词根词缀记忆法，比如...",
+                "编程入门学什么语言": "推荐Python，语法简洁且应用广泛...",
+                "谢谢你": "不客气，有问题随时问我哦~"
+            };
+            return replies[question] || "抱歉，我暂时还不太明白你的问题，能再详细说明一下吗？";
+        }
+    </script>
+</body>
+</html>
